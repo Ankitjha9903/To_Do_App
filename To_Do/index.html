@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="todoapp">
+            <h2>To do List <img src="" alt="" srcset=""></h2>
+            <div class="row">
+                <input type="text" id="inputbox" placeholder="Add Your Text">
+                <button onclick="Addtask()">Add</button>
+            </div>
+            <ul class="listconatainer"> <!-- Note: class should match the JS -->
+                <!-- <li class="checked">task 1 </li>
+                <li>task 2</li>
+                <li> task 3</li> -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const inputbox = document.getElementById("inputbox");
+        const listconatainer = document.querySelector(".listconatainer"); // Correct selector
+        
+        function Addtask() {
+            if (inputbox.value === '') {
+                alert("You must write something!");
+            } else {
+                let li = document.createElement("li");
+                li.innerHTML = inputbox.value;
+                listconatainer.appendChild(li);  // Corrected "listconatainer" to match the HTML
+                inputbox.value = '';  // Clear input field after adding task
+                let span = document.createElement("span");
+                span.innerHTML="\u00d7";
+                span.appendChild(span);
+            }
+        }
+        listconatainer.addEventListener("click", (e)=>{
+            if(e.target.tagName === "li"){
+                e.target.classList.toggle("checked");
+            }
+            else if(e.target.tagName === "span"){
+                e.target.parentElement.remove();
+            }
+        },false)
+    </script>
+</body>
+
+</html>
